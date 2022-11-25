@@ -22,6 +22,8 @@ async function run() {
     try {
         const UsedMobileDealCollection = client.db("UsedMobileDeal").collection("categoryList");
         const BlogCollection= client.db("UsedMobileDeal").collection("BlogCollection");
+        const ProductCollection= client.db("UsedMobileDeal").collection("ProductCollection");
+        
         app.get('/phonecategory', async (req, res) => {
             const query = {}
             const result = await UsedMobileDealCollection.find(query).toArray();
@@ -34,6 +36,22 @@ async function run() {
             res.send(result);
             
         })
+        app.get('/products', async (req, res) => {
+            const query = {}
+            const allproduct = await ProductCollection.find(query).toArray();
+            res.send(allproduct);
+            
+        })
+        app.get('/products/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = {}
+            const allproduct = await ProductCollection.find(query).toArray();
+            const product = allproduct.filter(pro=>pro.proId == id)
+            res.send(product);
+            
+        })
+
+        
     }
     finally {
         
