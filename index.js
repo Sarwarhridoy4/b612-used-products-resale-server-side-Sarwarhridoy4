@@ -23,6 +23,8 @@ async function run() {
         const UsedMobileDealCollection = client.db("UsedMobileDeal").collection("categoryList");
         const BlogCollection= client.db("UsedMobileDeal").collection("BlogCollection");
         const ProductCollection= client.db("UsedMobileDeal").collection("ProductCollection");
+        const usersCollection= client.db("UsedMobileDeal").collection("usersCollection");
+        const bookingCollection= client.db("UsedMobileDeal").collection("bookingCollection");
         
         app.get('/phonecategory', async (req, res) => {
             const query = {}
@@ -50,6 +52,20 @@ async function run() {
             res.send(product);
             
         })
+        app.post('/users', async (req, res) => {
+            const user = req.body;
+            console.log(user);
+            const result = await usersCollection.insertOne(user);
+            console.log(result);
+            res.send(result);
+        });
+        app.post('/bookings', async (req, res) => {
+            const booking = req.body;
+            console.log(booking);
+            const result = await bookingCollection.insertOne(booking);
+            console.log(result);
+            res.send(result);
+        });
 
         
     }
