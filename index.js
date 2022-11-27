@@ -82,3 +82,5 @@ app.get('/', async (req, res) => {
 })
 
 app.listen(port, () => console.log(`Used Mobile Deal running on ${port}`))
+
+// Deployed live at: https://mobile-resell-bd-server.vercel.app/
