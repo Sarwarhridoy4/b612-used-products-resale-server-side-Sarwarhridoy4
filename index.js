@@ -80,8 +80,15 @@ async function run() {
             const user = await usersCollection.findOne(query);
             res.send({ isSeller: user?.role === 'Seller' });
         })
-
-        
+        //get user specific  booking with users email
+        app.get('/bookings/:email', async (req, res) => {
+            const email = req.params.email;
+            const query = {email}
+            const allbookings = await bookingCollection.find(query).toArray();
+            const booking = allbookings.filter(book=>book.email == email)
+            res.send(booking);
+            
+        })
     }
     finally {
         
