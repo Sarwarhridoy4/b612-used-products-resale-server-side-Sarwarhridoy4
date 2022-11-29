@@ -89,6 +89,15 @@ async function run() {
             res.send(booking);
             
         })
+        //get seller
+        app.get('/seller', async (req, res) => {
+            const role = req.params.isAdmin;
+            const query = {role}
+            const allseller = await usersCollection.find(query).toArray();
+            // const booking = allbookings.filter(book=>book.role === email)
+            res.send(allseller);
+            
+        })
     }
     finally {
         
