@@ -20,6 +20,7 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 
 async function run() {
     try {
+        //collections
         const UsedMobileDealCollection = client.db("UsedMobileDeal").collection("categoryList");
         const BlogCollection= client.db("UsedMobileDeal").collection("BlogCollection");
         const ProductCollection= client.db("UsedMobileDeal").collection("ProductCollection");
@@ -52,6 +53,7 @@ async function run() {
             res.send(product);
             
         })
+        //registering users
         app.post('/users', async (req, res) => {
             const user = req.body;
             console.log(user);
@@ -59,6 +61,7 @@ async function run() {
             console.log(result);
             res.send(result);
         });
+        //post bookings
         app.post('/bookings', async (req, res) => {
             const booking = req.body;
             console.log(booking);
